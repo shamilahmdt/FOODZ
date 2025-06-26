@@ -29,10 +29,16 @@ urlpatterns = [
    path('slider/update/<int:id>/', views.slider_update, name="slider_update"),
    path('slider/delete/<int:id>/', views.slider_delete, name="slider_delete"),
 
+   path('food_item/', views.food_item, name="food_item"),
+   path('food_item/create', views.food_item_create, name="food_item_create"),
+   path('food_item/update/<int:id>/', views.food_item_update, name="food_item_update"),
+   path('food_item/delete/<int:id>/', views.food_item_delete, name="food_item_delete"),
+
    path('food_category/', views.food_category, name="food_category"),
    path('food_category/create', views.food_category_create, name="food_category_create"),
    path('food_category/update/<int:id>/', views.food_category_update, name="food_category_update"),
    path('food_category/delete/<int:id>/', views.food_category_delete, name="food_category_delete"),
+
 
    
 ]

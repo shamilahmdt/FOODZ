@@ -8,6 +8,8 @@ from customer.models import *
 from restaurant.models import *
 
 from .form import *
+from common.functions import *
+
 
 def dashboard(request):
     instances = Order.objects.all()
@@ -40,7 +42,18 @@ def store_category_create(request):
             return HttpResponseRedirect(reverse('manager:store_category'))
         
         else:
-            pass
+            message = generate_form_errors(form)
+            form = StoreCategoryForm()
+            context={
+            "title" : "Store Categories | Dashboard",
+            "sub_title" : "Store Categories",
+            "name" : "Create Store Categories",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_store_category.html', context=context)
+            
     else:
         form = StoreCategoryForm()
         context={
@@ -48,7 +61,6 @@ def store_category_create(request):
             "sub_title" : "Store Categories",
             "name" : "Create Store Categories",
             "form" : form,
-
         }
         return render(request, 'manager/update_store_category.html', context=context)
 
@@ -62,7 +74,17 @@ def store_category_update(request, id):
 
             return HttpResponseRedirect(reverse('manager:store_category'))
         else:
-            pass
+            message = generate_form_errors(form)
+            form = StoreCategoryForm()
+            context={
+            "title" : "Store Categories | Dashboard",
+            "sub_title" : "Store Categories",
+            "name" : "Create Store Categories",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_store_category.html', context=context)
     else:
         form = StoreCategoryForm(instance=instance)
         context={
@@ -144,7 +166,17 @@ def store_create(request):
             return HttpResponseRedirect(reverse('manager:store'))
         
         else:
-            pass
+            message = generate_form_errors(form)
+            form = StoreForm()
+            context={
+            "title" : "Store | Dashboard",
+            "sub_title" : "Stores",
+            "name" : "Store",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_store.html', context=context)
     else:
         form = StoreForm()
         context={
@@ -166,7 +198,17 @@ def store_update(request, id):
 
             return HttpResponseRedirect(reverse('manager:store'))
         else:
-            pass
+            message = generate_form_errors(form)
+            form = StoreForm()
+            context={
+            "title" : "Store | Dashboard",
+            "sub_title" : "Stores",
+            "name" : "Store",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_store.html', context=context)
     else:
         form = StoreForm(instance=instance)
         context={
@@ -206,7 +248,17 @@ def slider_create(request):
             return HttpResponseRedirect(reverse('manager:slider'))
         
         else:
-            pass
+            message = generate_form_errors(form)
+            form = SliderForm()
+            context={
+            "title" : "slider | Dashboard",
+            "sub_title" : "sliders",
+            "name" : "slider",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_slider.html', context=context)
     else:
         form = SliderForm()
         context={
@@ -228,7 +280,17 @@ def slider_update(request, id):
 
             return HttpResponseRedirect(reverse('manager:slider'))
         else:
-            pass
+            message = generate_form_errors(form)
+            form = SliderForm()
+            context={
+            "title" : "slider | Dashboard",
+            "sub_title" : "sliders",
+            "name" : "slider",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_slider.html', context=context)
     else:
         form = SliderForm(instance=instance)
         context={
@@ -245,8 +307,89 @@ def slider_delete(request, id):
     instance.delete()
     return HttpResponseRedirect(reverse('manager:slider'))
 
+def food_item(request):
+    instances = FoodItem.objects.all()
+
+    context={
+        "title" : "food_item | Dashboard",
+        "sub_title" : "food_items",
+        "name" : "food_item",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/food_item.html', context=context)
+
+def food_item_create(request):
+    if request.method == "POST":
+        form = FoodItemForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:food_item'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = FoodItemForm()
+            context={
+            "title" : "food_item | Dashboard",
+            "sub_title" : "food_items",
+            "name" : "food_item",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_food_item.html', context=context)
+    else:
+        form = FoodItemForm()
+        context={
+            "title" : "food_item | Dashboard",
+            "sub_title" : "food_items",
+            "name" : "food_item",
+            "form" : form,
+
+        }
+        return render(request, 'manager/update_food_item.html', context=context)
+
+def food_item_update(request, id):
+    instance = get_object_or_404(FoodItem,id=id)
+    if request.method == "POST":
+        form = FoodItemForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:food_item'))
+        else:
+            message = generate_form_errors(form)
+            form = FoodItemForm()
+            context={
+            "title" : "food_item | Dashboard",
+            "sub_title" : "food_items",
+            "name" : "food_item",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_food_item.html', context=context)
+    else:
+        form = FoodItemForm(instance=instance)
+        context={
+            "title" : "food_item | Dashboard",
+            "sub_title" : "food_items",
+            "name" : "food_item",
+            "form" : form,
+
+        }
+        return render(request, 'manager/update_food_item.html', context=context) 
+                    
+def food_item_delete(request, id):
+    instance = get_object_or_404(FoodItem,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:food_item'))
+
 def food_category(request):
-    instances = food_category.objects.all()
+    instances = FoodCategory.objects.all()
 
     context={
         "title" : "food_category | Dashboard",
@@ -267,7 +410,17 @@ def food_category_create(request):
             return HttpResponseRedirect(reverse('manager:food_category'))
         
         else:
-            pass
+            message = generate_form_errors(form)
+            form = FoodCategoryForm()
+            context={
+            "title" : "food_category | Dashboard",
+            "sub_title" : "food_categorys",
+            "name" : "food_category",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_food_category.html', context=context)
     else:
         form = FoodCategoryForm()
         context={
@@ -289,7 +442,17 @@ def food_category_update(request, id):
 
             return HttpResponseRedirect(reverse('manager:food_category'))
         else:
-            pass
+            message = generate_form_errors(form)
+            form = FoodCategoryForm()
+            context={
+            "title" : "food_category | Dashboard",
+            "sub_title" : "food_categorys",
+            "name" : "food_category",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/update_food_category.html', context=context)
     else:
         form = FoodCategoryForm(instance=instance)
         context={

@@ -37,8 +37,22 @@ class SliderForm(forms.ModelForm):
 
         widgets = {
             "name":forms.widgets.TextInput(attrs={"class":"form-control","placeholder":"Slider name"}),
-            "imagee":forms.widgets.FileInput(attrs={"class":"form-control"}),
+            "image":forms.widgets.FileInput(attrs={"class":"form-control"}),
             'store': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+class FoodItemForm(forms.ModelForm):
+    class Meta:
+        model = FoodItem
+        fields = ["name",'is_veg','price','image','category', "restaurant"]
+
+        widgets = {
+            "name" : forms.widgets.TextInput(attrs={"class":"form-control","placeholder":"FoodCategory name"}),
+            'is_veg': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            "restaurant" : forms.Select(attrs={"class":"form-control"}),
         }
 
 class FoodCategoryForm(forms.ModelForm):
