@@ -30,30 +30,37 @@
                                         {% csrf_token %}
                                         <div class="form-row">
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Item Name</label>
-                                                {{form.name}}
+                                                <label>Customer</label>
+                                                {{form.customer}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Is it Vegetrain--------------</label>
-                                                {{form.is_veg}}
+                                                <label>Address</label>
+                                                {{form.address}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Item Price</label>
-                                                {{form.price}}
+                                                <label>Address_type</label>
+                                                {{form.address_type}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Item Image</label>
-                                                {{form.image}}
+                                                <label>Landmark</label>
+                                                {{form.landmark}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Item Category</label>
-                                                {{form.category}}
+                                                <label>Latitude</label>
+                                                {{form.latitude}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Select restaurant</label>
-                                                {{form.restaurant}}
+                                                <label>Longitude</label>
+                                                {{form.longitude}}
                                             </div>
-
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Appartment</label>
+                                                {{form.appartment}}
+                                            </div>
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Is it selected--------------</label>
+                                                {{form.is_selected}}
+                                            </div>                                            
                                             <button class=" btn login-form__btn submit button" type="submit">Submit</button>
                                         </div>
                                         {% if error %}

@@ -12,7 +12,7 @@ class StoreCategoryForm(forms.ModelForm):
 
         widgets = {
             "name":forms.widgets.TextInput(attrs={"class":"form-control","placeholder":"Category name"}),
-            "imagee":forms.widgets.FileInput(attrs={"class":"form-control"})
+            "image":forms.widgets.FileInput(attrs={"class":"form-control"})
         }
 
 class StoreForm(forms.ModelForm):
@@ -33,7 +33,7 @@ class StoreForm(forms.ModelForm):
 class SliderForm(forms.ModelForm):
     class Meta:
         model = Slider
-        fields = ["name", "image"]
+        fields = ["name", "image",'store']
 
         widgets = {
             "name":forms.widgets.TextInput(attrs={"class":"form-control","placeholder":"Slider name"}),
@@ -63,4 +63,24 @@ class FoodCategoryForm(forms.ModelForm):
         widgets = {
             "name" : forms.widgets.TextInput(attrs={"class":"form-control","placeholder":"FoodCategory name"}),
             "restaurant" : forms.Select(attrs={"class":"form-control"})
+        }
+
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = [
+            "customer", "address", "address_type", "landmark",
+            "latitude", "longitude", "appartment", "is_selected"
+        ]
+        
+        widgets = {
+            "customer": forms.Select(attrs={"class": "form-control"}),
+            "address": forms.Textarea(attrs={"class": "form-control", "rows": 3, "placeholder": "Full address"}),
+            "address_type": forms.TextInput(attrs={"class": "form-control", "placeholder": "Home / Work / Other"}),
+            "landmark": forms.TextInput(attrs={"class": "form-control", "placeholder": "Nearby landmark"}),
+            "latitude": forms.NumberInput(attrs={"class": "form-control", "placeholder": "Latitude"}),
+            "longitude": forms.NumberInput(attrs={"class": "form-control", "placeholder": "Longitude"}),
+            "appartment": forms.TextInput(attrs={"class": "form-control", "placeholder": "Flat / Apartment name"}),
+            "is_selected": forms.CheckboxInput(attrs={"class": "form-check-input"}),
         }

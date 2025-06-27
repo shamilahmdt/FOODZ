@@ -101,6 +101,13 @@ def store_category_delete(request, id):
     instance.delete()
     return HttpResponseRedirect(reverse('manager:store_category'))
 
+def orders(request):
+    instances = Order.objects.all()
+    context={
+        "instances" : instances,
+    }
+    return render(request, 'manager/order.html', context=context) 
+
 def order(request,id):
     pass
 
@@ -468,3 +475,84 @@ def food_category_delete(request, id):
     instance = get_object_or_404(FoodCategory,id=id)
     instance.delete()
     return HttpResponseRedirect(reverse('manager:food_category'))
+
+def address(request):
+    instances = Address.objects.all()
+
+    context={
+        "title" : "address | Dashboard",
+        "sub_title" : "addresss",
+        "name" : "address",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/address.html', context=context)
+
+def address_create(request):
+    if request.method == "POST":
+        form = AddressForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:address'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = AddressForm()
+            context={
+            "title" : "address | Dashboard",
+            "sub_title" : "addresss",
+            "name" : "address",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/address_update.html', context=context)
+    else:
+        form = AddressForm()
+        context={
+            "title" : "address | Dashboard",
+            "sub_title" : "addresss",
+            "name" : "address",
+            "form" : form,
+
+        }
+        return render(request, 'manager/address_update.html', context=context)
+
+def address_update(request, id):
+    instance = get_object_or_404(Address,id=id)
+    if request.method == "POST":
+        form = AddressForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:address'))
+        else:
+            message = generate_form_errors(form)
+            form = AddressForm()
+            context={
+            "title" : "address | Dashboard",
+            "sub_title" : "addresss",
+            "name" : "address",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/address_update.html', context=context)
+    else:
+        form = AddressForm(instance=instance)
+        context={
+            "title" : "address | Dashboard",
+            "sub_title" : "addresss",
+            "name" : "address",
+            "form" : form,
+
+        }
+        return render(request, 'manager/address_update.html', context=context) 
+                    
+def address_delete(request, id):
+    instance = get_object_or_404(Address,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:address'))

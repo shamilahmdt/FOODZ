@@ -11,6 +11,8 @@ urlpatterns = [
    path('store_category/update/<int:id>/', views.store_category_update, name="store_category_update"),
    path('store_category/delete/<int:id>/', views.store_category_delete, name="store_category_delete"),
 
+   path('orders/', views.orders, name="orders"),
+   
    path('order/<int:id>/', views.order, name="order"),
    path('order/assign/<int:id>/', views.order_assign, name="order_assign"),
    path('order/accept/<int:id>/', views.order_accept, name="order_accept"),
@@ -39,6 +41,10 @@ urlpatterns = [
    path('food_category/update/<int:id>/', views.food_category_update, name="food_category_update"),
    path('food_category/delete/<int:id>/', views.food_category_delete, name="food_category_delete"),
 
+   path('address/', views.address, name="address"),
+   path('address/create', views.address_create, name="address_create"),
+   path('address/update/<int:id>/', views.address_update, name="address_update"),
+   path('address/delete/<int:id>/', views.address_delete, name="address_delete"),
 
    
 ]

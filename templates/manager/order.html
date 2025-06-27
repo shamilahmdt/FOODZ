@@ -9,62 +9,7 @@
         ***********************************-->
         <div class="content-body">
 
-            <div id="overview-container" class="card">
-                <h1 class="card-title">Overview</h1>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card-body dash-item">
-                            <div class="icon-bg">
-                                <i class="fa-solid fa-chart-column"></i>
-                            </div>
-                            <div>
-                                <p><a href="{% url 'manager:orders' %}">Orders</a></p>
-                                <h3>{{orders}}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card-body dash-item">
-                            <div class="icon-bg">
-                                <i class="fa-solid fa-user-group"></i>
-                            </div>
-                            <div>
-                                <p>Customers</p>
-                                <h3>{{customers}}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card-body dash-item">
-                            <div class="icon-bg">
-                                <i class="fa-solid fa-store"></i>
-                            </div>
-                            <div>
-                                <p>Stores</p>
-                                <h3>{{stores}}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card-body dash-item">
-                            <div class="icon-bg">
-                                <i class="fa-solid fa-coins"></i>
-                            </div>
-                            <div>
-                                <p>Earnings</p>
-                                {% if staff %}
-                                <h3>{{manager.country.currency}} {{earnings}}</h3>
-                                {% else %}
-                                <h3>{{earnings}}</h3>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="container-fluid mt-3">
+                        <div class="container-fluid mt-3">
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -139,4 +84,5 @@
             Content body end
         ***********************************-->
 
-        {% endblock %}
+
+{% endblock %}

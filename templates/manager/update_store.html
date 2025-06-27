@@ -30,14 +30,33 @@
                                         {% csrf_token %}
                                         <div class="form-row">
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Category Name</label>
+                                                <label>Store Name</label>
                                                 {{form.name}}
+                                            </div>
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Select tagline</label>
+                                                {{form.tagline}}
+                                            </div>
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Select Category</label>
+                                                {{form.category}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <label>Select Image</label>
                                                 {{form.image}}
                                             </div>
-
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Select rating</label>
+                                                {{form.rating}}
+                                            </div>
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Select time</label>
+                                                {{form.time}}
+                                            </div>
+                                            <div class="form-group col-12 col-md-6">
+                                                <label>Select offer</label>
+                                                {{form.offer}}
+                                            </div>
                                             <button class=" btn login-form__btn submit button" type="submit">Submit</button>
                                         </div>
                                         {% if error %}
