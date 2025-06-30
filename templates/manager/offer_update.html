@@ -30,24 +30,20 @@
                                         {% csrf_token %}
                                         <div class="form-row">
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Customer</label>
-                                                {{form.customer}}
+                                                <label>Coupen code</label>
+                                                {{form.coupen_code}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Product</label>
-                                                {{form.product}}
+                                                <label>Description</label>
+                                                {{form.description}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Quantity</label>
-                                                {{form.qty}}
+                                                <label>Offer</label>
+                                                {{form.offer}}
                                             </div>
                                             <div class="form-group col-12 col-md-6">
-                                                <label>Restaruant</label>
-                                                {{form.store}}
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <label>Price</label>
-                                                {{form.amnt}}
+                                                <label>Is_percentage -------></label>
+                                                {{form.is_percentage}}
                                             </div>
                                            
                                             <button class=" btn login-form__btn submit button" type="submit">Submit</button>

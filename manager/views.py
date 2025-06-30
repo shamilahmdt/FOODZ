@@ -974,7 +974,7 @@ def offer(request):
         "instances" : instances,
 
     }
-    return render(request, 'manager/order.html', context=context)
+    return render(request, 'manager/offer.html', context=context)
 
 def offer_create(request):
     if request.method == "POST":
@@ -983,7 +983,7 @@ def offer_create(request):
             instance = form.save(commit=False)
             instance.save()
 
-            return HttpResponseRedirect(reverse('manager:orders'))
+            return HttpResponseRedirect(reverse('manager:offer'))
         
         else:
             message = generate_form_errors(form)
@@ -996,7 +996,7 @@ def offer_create(request):
             "message" :message,
             "form" : form,
             }
-            return render(request, 'manager/order_update.html', context=context)
+            return render(request, 'manager/offer_update.html', context=context)
     else:
         form = OfferForm()
         context={
@@ -1006,7 +1006,7 @@ def offer_create(request):
             "form" : form,
 
         }
-        return render(request, 'manager/order_update.html', context=context)
+        return render(request, 'manager/offer_update.html', context=context)
 
 def offer_update(request, id):
     instance = get_object_or_404(Offer,id=id)
@@ -1016,7 +1016,7 @@ def offer_update(request, id):
             instance = form.save(commit=False)
             instance.save()
 
-            return HttpResponseRedirect(reverse('manager:orders'))
+            return HttpResponseRedirect(reverse('manager:offer'))
         else:
             message = generate_form_errors(form)
             form = OfferForm()
@@ -1028,7 +1028,7 @@ def offer_update(request, id):
             "message" :message,
             "form" : form,
             }
-            return render(request, 'manager/order_update.html', context=context)
+            return render(request, 'manager/offer_update.html', context=context)
     else:
         form = OfferForm(instance=instance)
         context={
@@ -1038,9 +1038,9 @@ def offer_update(request, id):
             "form" : form,
 
         }
-        return render(request, 'manager/order_update.html', context=context) 
+        return render(request, 'manager/offer_update.html', context=context) 
                     
 def offer_delete(request, id):
     instance = get_object_or_404(Offer,id=id)
     instance.delete()
-    return HttpResponseRedirect(reverse('manager:orders'))
+    return HttpResponseRedirect(reverse('manager:offer'))

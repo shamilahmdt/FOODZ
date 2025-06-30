@@ -104,10 +104,10 @@
                                         <thead>
                                             <tr>
                                                 <th>NAME</th>
-                                                <th>PRODUCTS</th>
-                                                <th>QUATITY</th>
+                                                <th>ORDER ID</th>
+                                                <th>STATUS</th>
                                                 <th>STORE</th>
-                                                <th>PRICE</th>
+                                                <th>TOTAL</th>
                                                 <th>EDIT</th>
                                                 <th>DELETE</th>
 
@@ -117,10 +117,10 @@
                                             {% for instance in instances %}
                                             <tr>
                                                 <td>{{instance.customer}}</td>
-                                                <td>{{instance.product}}</td>
-                                                <td>{{instance.qty}}</td>
+                                                <td>{{instance.order_id}}</td>
+                                                <td>{{instance.status}}</td>
                                                 <td>{{instance.store}}</td>
-                                                <td>{{instance.amnt}}</td>
+                                                <td>{{instance.total}}</td>
                                                 <td>
                                                     <a href="{% url 'manager:full_orders_update' id=instance.id %}" id="custom-btn">EDIT</a>
                                                 </td>

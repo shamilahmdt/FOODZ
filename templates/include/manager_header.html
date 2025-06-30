@@ -103,10 +103,12 @@
                             <i class="fa-solid fa-store mb-1 mr-2"></i><span class="nav-text">Customer</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{% url 'manager:customer' %}">Customer</a></li>
                             <li><a href="{% url 'manager:address' %}">Address</a></li>
                             <li><a href="{% url 'manager:cart' %}">Cart</a></li>
                             <li><a href="{% url 'manager:cartbill' %}">Cart Bill</a></li>
+                            <li><a href="{% url 'manager:order_item' %}">Order Item</a></li>
+                            <li><a href="{% url 'manager:offer' %}">Offers</a></li>
+
 
 
                             
@@ -118,7 +120,7 @@
                             <i class="fa-solid fa-square-poll-vertical mb-1 mr-2"></i><span class="nav-text">Orders</span>
                         </a>
                     </li>
-                    <div style="margin: 10px 14px; border-bottom: 1px solid #c8c8c8;"></div>
+                    <!-- <div style="margin: 10px 14px; border-bottom: 1px solid #c8c8c8;"></div> -->
 
                     <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -130,16 +132,16 @@
                         </ul>
                     </li> -->
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="fa-solid fa-tags mb-1 mr-2"></i><span class="nav-text">Promotions</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="">Banners</a></li>
-                            <!-- <li><a href="#">Offers</a></li> -->
-                            <!-- <li><a href="#">Notifications</a></li> -->
+                            <li><a href="#">Offers</a></li>
+                            <li><a href="#">Notifications</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <div style="margin: 10px 14px; border-bottom: 1px solid #c8c8c8;"></div>
                     <li class="mega-menu mega-menu-sm">
@@ -147,9 +149,9 @@
                             <i class="fa-solid fa-user-group mb-1 mr-2"></i><span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="">Customers</a></li>
-                            <li><a href="">Owners</a></li>
-                            <li><a href="">Drivers</a></li>
+                            <li><a href="{% url 'manager:customer' %}">Customers</a></li>
+                            <!-- <li><a href="">Owners</a></li>
+                            <li><a href="">Drivers</a></li> -->
                         </ul>
                     </li>
                     <li>
