@@ -476,6 +476,87 @@ def food_category_delete(request, id):
     instance.delete()
     return HttpResponseRedirect(reverse('manager:food_category'))
 
+def customer(request):
+    instances = Customer.objects.all()
+
+    context={
+        "title" : "customer | Dashboard",
+        "sub_title" : "customers",
+        "name" : "customer",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/customer.html', context=context)
+
+def customer_create(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:customer'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = CustomerForm()
+            context={
+            "title" : "customer | Dashboard",
+            "sub_title" : "customers",
+            "name" : "customer",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/customer_update.html', context=context)
+    else:
+        form = CustomerForm()
+        context={
+            "title" : "customer | Dashboard",
+            "sub_title" : "customers",
+            "name" : "customer",
+            "form" : form,
+
+        }
+        return render(request, 'manager/customer_update.html', context=context)
+
+def customer_update(request, id):
+    instance = get_object_or_404(Customer,id=id)
+    if request.method == "POST":
+        form = CustomerForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:customer'))
+        else:
+            message = generate_form_errors(form)
+            form = CustomerForm()
+            context={
+            "title" : "customer | Dashboard",
+            "sub_title" : "customers",
+            "name" : "customer",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/customer_update.html', context=context)
+    else:
+        form = CustomerForm(instance=instance)
+        context={
+            "title" : "customer | Dashboard",
+            "sub_title" : "customers",
+            "name" : "customer",
+            "form" : form,
+
+        }
+        return render(request, 'manager/customer_update.html', context=context) 
+                    
+def customer_delete(request, id):
+    instance = get_object_or_404(Customer,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:customer'))
+
 def address(request):
     instances = Address.objects.all()
 
@@ -487,6 +568,8 @@ def address(request):
 
     }
     return render(request, 'manager/address.html', context=context)
+
+
 
 def address_create(request):
     if request.method == "POST":
@@ -556,3 +639,408 @@ def address_delete(request, id):
     instance = get_object_or_404(Address,id=id)
     instance.delete()
     return HttpResponseRedirect(reverse('manager:address'))
+
+def cart(request):
+    instances = Cart.objects.all()
+
+    context={
+        "title" : "cart | Dashboard",
+        "sub_title" : "carts",
+        "name" : "cart",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/cart.html', context=context)
+
+def cart_create(request):
+    if request.method == "POST":
+        form = CartForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:cart'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = CartForm()
+            context={
+            "title" : "cart | Dashboard",
+            "sub_title" : "carts",
+            "name" : "cart",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/cart_update.html', context=context)
+    else:
+        form = CartForm()
+        context={
+            "title" : "cart | Dashboard",
+            "sub_title" : "carts",
+            "name" : "cart",
+            "form" : form,
+
+        }
+        return render(request, 'manager/cart_update.html', context=context)
+
+def cart_update(request, id):
+    instance = get_object_or_404(Cart,id=id)
+    if request.method == "POST":
+        form = CartForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:cart'))
+        else:
+            message = generate_form_errors(form)
+            form = CartForm()
+            context={
+            "title" : "cart | Dashboard",
+            "sub_title" : "carts",
+            "name" : "cart",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/cart_update.html', context=context)
+    else:
+        form = CartForm(instance=instance)
+        context={
+            "title" : "cart | Dashboard",
+            "sub_title" : "carts",
+            "name" : "cart",
+            "form" : form,
+
+        }
+        return render(request, 'manager/cart_update.html', context=context) 
+                    
+def cart_delete(request, id):
+    instance = get_object_or_404(Cart,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:cart'))
+
+def cartbill(request):
+    instances = CartBill.objects.all()
+
+    context={
+        "title" : "cartbill | Dashboard",
+        "sub_title" : "cartbills",
+        "name" : "cartbill",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/cartbill.html', context=context)
+
+def cartbill_create(request):
+    if request.method == "POST":
+        form = CartBillForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:cartbill'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = CartBillForm()
+            context={
+            "title" : "cartbill | Dashboard",
+            "sub_title" : "cartbills",
+            "name" : "cartbill",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/cartbill_update.html', context=context)
+    else:
+        form = CartBillForm()
+        context={
+            "title" : "cartbill | Dashboard",
+            "sub_title" : "cartbills",
+            "name" : "cartbill",
+            "form" : form,
+
+        }
+        return render(request, 'manager/cartbill_update.html', context=context)
+
+def cartbill_update(request, id):
+    instance = get_object_or_404(CartBill,id=id)
+    if request.method == "POST":
+        form = CartBillForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:cartbill'))
+        else:
+            message = generate_form_errors(form)
+            form = CartBillForm()
+            context={
+            "title" : "cartbill | Dashboard",
+            "sub_title" : "cartbills",
+            "name" : "cartbill",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/cartbill_update.html', context=context)
+    else:
+        form = CartBillForm(instance=instance)
+        context={
+            "title" : "cartbill | Dashboard",
+            "sub_title" : "cartbills",
+            "name" : "cartbill",
+            "form" : form,
+
+        }
+        return render(request, 'manager/cartbill_update.html', context=context) 
+                    
+def cartbill_delete(request, id):
+    instance = get_object_or_404(CartBill,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:cartbill'))
+
+def full_orders(request):
+    instances = Order.objects.all()
+
+    context={
+        "title" : "full_orders | Dashboard",
+        "sub_title" : "full_orderss",
+        "name" : "full_orders",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/order.html', context=context)
+
+def full_orders_create(request):
+    if request.method == "POST":
+        form = OrderForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:orders'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = OrderForm()
+            context={
+            "title" : "full_orders | Dashboard",
+            "sub_title" : "full_orderss",
+            "name" : "full_orders",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/order_update.html', context=context)
+    else:
+        form = OrderForm()
+        context={
+            "title" : "full_orders | Dashboard",
+            "sub_title" : "full_orderss",
+            "name" : "full_orders",
+            "form" : form,
+
+        }
+        return render(request, 'manager/order_update.html', context=context)
+
+def full_orders_update(request, id):
+    instance = get_object_or_404(Order,id=id)
+    if request.method == "POST":
+        form = OrderForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:orders'))
+        else:
+            message = generate_form_errors(form)
+            form = OrderForm()
+            context={
+            "title" : "full_orders | Dashboard",
+            "sub_title" : "full_orderss",
+            "name" : "full_orders",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/order_update.html', context=context)
+    else:
+        form = OrderForm(instance=instance)
+        context={
+            "title" : "full_orders | Dashboard",
+            "sub_title" : "full_orderss",
+            "name" : "full_orders",
+            "form" : form,
+
+        }
+        return render(request, 'manager/order_update.html', context=context) 
+                    
+def full_orders_delete(request, id):
+    instance = get_object_or_404(Order,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:orders'))
+
+def order_item(request):
+    instances = OrderItem.objects.all()
+
+    context={
+        "title" : "order_item | Dashboard",
+        "sub_title" : "order_items",
+        "name" : "order_item",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/order_item.html', context=context)
+
+def order_item_create(request):
+    if request.method == "POST":
+        form = OrderItemForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:order_item'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = OrderItemForm()
+            context={
+            "title" : "order_item | Dashboard",
+            "sub_title" : "order_items",
+            "name" : "order_item",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/order_item_update.html', context=context)
+    else:
+        form = OrderItemForm()
+        context={
+            "title" : "order_item | Dashboard",
+            "sub_title" : "order_items",
+            "name" : "order_item",
+            "form" : form,
+
+        }
+        return render(request, 'manager/order_item_update.html', context=context)
+
+def order_item_update(request, id):
+    instance = get_object_or_404(OrderItem,id=id)
+    if request.method == "POST":
+        form = OrderItemForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:order_item'))
+        else:
+            message = generate_form_errors(form)
+            form = OrderItemForm()
+            context={
+            "title" : "order_item | Dashboard",
+            "sub_title" : "order_items",
+            "name" : "order_item",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/order_item_update.html', context=context)
+    else:
+        form = OrderItemForm(instance=instance)
+        context={
+            "title" : "order_item | Dashboard",
+            "sub_title" : "order_items",
+            "name" : "order_item",
+            "form" : form,
+
+        }
+        return render(request, 'manager/order_item_update.html', context=context) 
+                    
+def order_item_delete(request, id):
+    instance = get_object_or_404(OrderItem,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:order_item'))
+
+def offer(request):
+    instances = Offer.objects.all()
+
+    context={
+        "title" : "offer | Dashboard",
+        "sub_title" : "offers",
+        "name" : "offer",
+        "instances" : instances,
+
+    }
+    return render(request, 'manager/order.html', context=context)
+
+def offer_create(request):
+    if request.method == "POST":
+        form = OfferForm(request.POST,request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:orders'))
+        
+        else:
+            message = generate_form_errors(form)
+            form = OfferForm()
+            context={
+            "title" : "offer | Dashboard",
+            "sub_title" : "offers",
+            "name" : "offer",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/order_update.html', context=context)
+    else:
+        form = OfferForm()
+        context={
+            "title" : "offer | Dashboard",
+            "sub_title" : "offers",
+            "name" : "offer",
+            "form" : form,
+
+        }
+        return render(request, 'manager/order_update.html', context=context)
+
+def offer_update(request, id):
+    instance = get_object_or_404(Offer,id=id)
+    if request.method == "POST":
+        form = OfferForm(request.POST,request.FILES,instance=instance)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('manager:orders'))
+        else:
+            message = generate_form_errors(form)
+            form = OfferForm()
+            context={
+            "title" : "offer | Dashboard",
+            "sub_title" : "offers",
+            "name" : "offer",
+            "error" : True,
+            "message" :message,
+            "form" : form,
+            }
+            return render(request, 'manager/order_update.html', context=context)
+    else:
+        form = OfferForm(instance=instance)
+        context={
+            "title" : "offer | Dashboard",
+            "sub_title" : "offers",
+            "name" : "offer",
+            "form" : form,
+
+        }
+        return render(request, 'manager/order_update.html', context=context) 
+                    
+def offer_delete(request, id):
+    instance = get_object_or_404(Offer,id=id)
+    instance.delete()
+    return HttpResponseRedirect(reverse('manager:orders'))

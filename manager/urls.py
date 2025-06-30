@@ -41,10 +41,43 @@ urlpatterns = [
    path('food_category/update/<int:id>/', views.food_category_update, name="food_category_update"),
    path('food_category/delete/<int:id>/', views.food_category_delete, name="food_category_delete"),
 
+   path('cart/', views.cart, name="cart"),
+   path('cart/create', views.cart_create, name="cart_create"),
+   path('cart/update/<int:id>/', views.cart_update, name="cart_update"),
+   path('cart/delete/<int:id>/', views.cart_delete, name="cart_delete"),
+
+   path('customer/', views.customer, name="customer"),
+   path('customer/create', views.customer_create, name="customer_create"),
+   path('customer/update/<int:id>/', views.customer_update, name="customer_update"),
+   path('customer/delete/<int:id>/', views.customer_delete, name="customer_delete"),
+
    path('address/', views.address, name="address"),
    path('address/create', views.address_create, name="address_create"),
    path('address/update/<int:id>/', views.address_update, name="address_update"),
    path('address/delete/<int:id>/', views.address_delete, name="address_delete"),
 
-   
+   path('cart/', views.cart, name="cart"),
+   path('cart/create', views.cart_create, name="cart_create"),
+   path('cart/update/<int:id>/', views.cart_update, name="cart_update"),
+   path('cart/delete/<int:id>/', views.cart_delete, name="cart_delete"),
+
+   path('cartbill/', views.cartbill, name="cartbill"),
+   path('cartbill/create', views.cartbill_create, name="cartbill_create"),
+   path('cartbill/update/<int:id>/', views.cartbill_update, name="cartbill_update"),
+   path('cartbill/delete/<int:id>/', views.cartbill_delete, name="cartbill_delete"),
+
+   path('full_orders/', views.full_orders, name="full_orders"),
+   path('full_orders/create', views.full_orders_create, name="full_orders_create"),
+   path('full_orders/update/<int:id>/', views.full_orders_update, name="full_orders_update"),
+   path('full_orders/delete/<int:id>/', views.full_orders_delete, name="full_orders_delete"),
+
+   path('order_item/', views.order_item, name="order_item"),
+   path('order_item/create', views.order_item_create, name="order_item_create"),
+   path('order_item/update/<int:id>/', views.order_item_update, name="order_item_update"),
+   path('order_item/delete/<int:id>/', views.order_item_delete, name="order_item_delete"),
+
+   path('offer/', views.offer, name="offer"),
+   path('offer/create', views.offer_create, name="offer_create"),
+   path('offer/update/<int:id>/', views.offer_update, name="offer_update"),
+   path('offer/delete/<int:id>/', views.offer_delete, name="offer_delete"),
 ]
