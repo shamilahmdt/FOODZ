@@ -470,7 +470,77 @@ def offer_apply(request,id):
 
     return HttpResponseRedirect(reverse('web:cart'))
 
+def orders(request):
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    orders = Order.objects.filter(customer=customer)
+    
+    order_item_count = []
 
+    for order in orders:   
+        count = OrderItem.objects.filter(order=order).count()
+        order_item_count.append({
+            "order" : order,
+            "count" : count,
+        })
+
+    context = {
+        "orders" : orders,
+        "order_item_count" : order_item_count,
+        "customer" : customer,
+    }
+    return render(request, 'web/orders.html', context=context)
+
+def order_tracking(request, id):
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    order = Order.objects.get(id=id, customer=customer)
+    order_items = OrderItem.objects.filter(order=order)
+    is_numeric = order.address.appartment.isdigit()
+    offer = order.sub_total - order.total 
+
+
+    steps = [
+        {"label": "Order Placed", "completed": False},
+        {"label": "Processed", "completed": False},
+        {"label": "Shipped", "completed": False},
+        {"label": "Out for Delivery", "completed": False},
+        {"label": "Delivered", "completed": False},
+    ]
+
+    if order.status == 'PL':
+        status = 0
+        for i in range(status + 1):
+            steps[i]['completed'] = True
+    elif order.status == 'AC':
+        status = 1
+        for i in range(status + 1):
+            steps[i]['completed'] = True
+    elif order.status == 'SH':
+        status = 2
+        for i in range(status + 1):
+            steps[i]['completed'] = True
+    elif order.status == 'DI':
+        status = 3
+        for i in range(status + 1):
+            steps[i]['completed'] = True
+    elif order.status == 'CO':
+        status = 4
+        for i in range(status + 1):
+            steps[i]['completed'] = True
+    else:
+        status = 0
+
+
+    context = {
+        "order": order,
+        "steps": steps,
+        "is_numeric" : is_numeric,
+        "order_items": order_items,
+        "offer": offer,
+    }
+
+    return render(request, 'web/order_tracking.html', context=context)
     
 
 def logout(request):

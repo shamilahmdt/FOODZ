@@ -6,7 +6,10 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("web.urls",namespace="web")),
-    path('manager/',include("manager.urls",namespace="manager"))
+    path('manager/',include("manager.urls",namespace="manager")),
+    
+    path('api/v1/customer/', include('api.v1.customer.urls')),
+
 ]
 
 
