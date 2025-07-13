@@ -155,8 +155,6 @@ def address_add(request):
 
 
 
-
-
 @api_view(["PUT"])  
 @permission_classes([IsAuthenticated])
 def address_update(request,id):
@@ -184,9 +182,6 @@ def address_update(request,id):
     }
 
     return Response(response_data)
-
-
-
 
 
 @api_view(["DELETE"])

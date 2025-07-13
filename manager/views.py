@@ -9,8 +9,10 @@ from restaurant.models import *
 
 from .form import *
 from common.functions import *
+from common.decorations import *
 
-
+@allow_super
+@login_required(login_url='/manager/login') 
 def dashboard(request):
     instances = Order.objects.all()
     context={
@@ -18,6 +20,62 @@ def dashboard(request):
     }
     return render(request, 'manager/index.html', context=context)    
 
+def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return HttpResponseRedirect(reverse('manager:dashboard'))
+
+        else:
+            context = {
+                "error" : True,
+                "message": "Invalid Email or Password"
+            }
+            return render(request, 'manager/login.html', context=context)
+    else:         
+        return render(request, 'manager/login.html')
+
+
+def register(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if User.objects.filter(email=email).exists():
+            context = {
+                "error" : True,
+                "message": "Email already exists"
+            }
+            return render(request, 'manager/register.html', context=context)
+
+        else:
+            user = User.objects.create_user(
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                password=password,
+                is_customer=True
+            )
+            user.save()
+
+            customer = Customer.objects.create(
+                user=user
+            )
+            customer.save()
+            return HttpResponseRedirect(reverse('manager:login'))
+
+    else:
+        return render(request, 'manager/register.html')
+    
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect(reverse('manager:login'))
 
 @login_required(login_url='/manager/login')
 def store_category(request):

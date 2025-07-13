@@ -8,9 +8,10 @@ from customer.models import Customer,Cart,Address,CartBill,Order,OrderItem,Offer
 from restaurant.models import StoreCategory, Store, Slider,FoodCategory,FoodItem
 from django.db.models import Sum,Count
 
+from common.decorations import *
 
 
-
+@allow_agent
 @login_required(login_url='/login')
 def index(request):
     store_categories = StoreCategory.objects.all()
@@ -76,6 +77,10 @@ def register(request):
 
     else:
         return render(request, 'web/register.html')
+    
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect(reverse('web:login'))
     
 def restaurants(request, id):
     store_categories = StoreCategory.objects.all()
@@ -543,7 +548,5 @@ def order_tracking(request, id):
     return render(request, 'web/order_tracking.html', context=context)
     
 
-def logout(request):
-    auth_logout(request)
-    return HttpResponseRedirect(reverse('web:login'))
+
 

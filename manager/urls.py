@@ -5,7 +5,12 @@ app_name = "manager"
 
 
 urlpatterns = [
+    
    path('', views.dashboard, name="dashboard"),
+   path('login/', views.login, name="login"),
+   path('register/', views.register, name="register"),
+   path('logout/', views.logout, name="logout"),
+
    path('store_category/', views.store_category, name="store_category"),
    path('store_category/create', views.store_category_create, name="store_category_create"),
    path('store_category/update/<int:id>/', views.store_category_update, name="store_category_update"),
