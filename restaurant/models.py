@@ -1,4 +1,5 @@
 from django.db import models
+from customer.models import *
 
 
 
@@ -90,3 +91,16 @@ class FoodItem(models.Model):
 
     def __str__(self):
         return self.name
+    
+class StoreManager(models.Model):
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'restaurant_store_manager'
+        verbose_name = 'store manager'
+        verbose_name_plural = 'store managers'
+        ordering = ['-id']
+
+    def _str_(self):
+        return f"{self.user.email} - {self.store.name}"
