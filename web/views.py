@@ -11,7 +11,6 @@ from django.db.models import Sum,Count
 from common.decorations import *
 
 
-@allow_agent
 @login_required(login_url='/login')
 def index(request):
     store_categories = StoreCategory.objects.all()
